@@ -1,0 +1,24 @@
+type: object
+description: Неснижаемый остаток по складу
+properties:
+  id:
+    type: string
+    format: uuid
+    description: ID позиции неснижаемого остатка
+  accountId:
+    type: string
+    format: uuid
+    description: ID учетной записи
+  meta:
+    $ref: '../common/meta.yaml'
+  store:
+    type: object
+    oneOf:
+      - properties:
+          meta:
+            $ref: '../common/meta.yaml'
+      - $ref: './store.yaml'
+  quantity:
+    type: number
+    format: float
+    description: Количество неснижаемого остатка для склада

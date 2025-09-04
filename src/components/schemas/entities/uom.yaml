@@ -1,0 +1,27 @@
+type: object
+description: Единица измерения
+properties:
+  meta:
+    $ref: '../common/meta.yaml'
+  id:
+    type: string
+    format: uuid
+    description: ID единицы измерения
+    readOnly: true
+    example: "12a8b923-692c-11e6-8a84-bae500000058"
+  name:
+    type: string
+    description: Наименование единицы измерения
+    example: "шт"
+  description:
+    type: string
+    description: Описание единицы измерения
+    example: "Штука"
+  code:
+    type: string
+    description: Код единицы измерения
+    example: "796"
+  externalCode:
+    type: string
+    description: Внешний код единицы измерения
+    example: "pcs"

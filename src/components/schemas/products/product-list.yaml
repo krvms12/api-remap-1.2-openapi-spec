@@ -1,0 +1,23 @@
+type: object
+required:
+  - context
+  - meta
+  - rows
+properties:
+  context:
+    description: Метаданные о сотруднике, выполнившем запрос
+    type: object
+    properties:
+      employee:
+        type: object
+        properties:
+          meta:
+            $ref: '../common/meta.yaml'
+  meta:
+    description: Метаданные о выдаче
+    $ref: '../common/meta-list.yaml'
+  rows:
+    type: array
+    description: Массив товаров
+    items:
+      $ref: './product.yaml'

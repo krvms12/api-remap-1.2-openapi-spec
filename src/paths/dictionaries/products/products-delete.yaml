@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Products
+  summary: Массовое удаление товаров
+  description: |
+    Массовое удаление товаров. В теле запроса нужно передать массив, содержащий JSON метаданных товаров, которые вы хотите удалить.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: array
+          items:
+            type: object
+            properties:
+              meta:
+                $ref: '../../../components/schemas/common/meta.yaml'
+            required:
+              - meta
+  responses:
+    '200':
+      description: Товары успешно удалены
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                info:
+                  type: string
+                  description: Информация об удалении
+                  example: "Сущность 'product' с UUID: 7944ef04-f831-11e5-7a69-971500188b1 успешно удалена"
+    '400':
+      $ref: '../../../components/responses.yaml#/BadRequest'
+    '401':
+      $ref: '../../../components/responses.yaml#/Unauthorized'
+    '403':
+      $ref: '../../../components/responses.yaml#/Forbidden'

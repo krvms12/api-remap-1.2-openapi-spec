@@ -1,0 +1,13 @@
+type: object
+properties:
+  meta:
+    $ref: '../common/meta.yaml'
+  attributes:
+    type: array
+    description: Массив дополнительных полей
+    items:
+      type: object
+      $ref: '../entities/attribute.yaml'
+  createShared:
+    type: boolean
+    description: Создавать новые документы с общим доступом

@@ -1,0 +1,32 @@
+type: object
+description: Кассир
+properties:
+  meta:
+    description: Метаданные Кассира
+    $ref: '../common/meta.yaml'
+  id:
+    type: string
+    format: uuid
+    description: ID Кассира
+    readOnly: true
+  accountId:
+    type: string
+    format: uuid
+    description: ID учетной записи
+    readOnly: true
+  employee:
+    description: Метаданные сотрудника, которого представляет собой кассир
+    type: object
+    oneOf:
+      - properties:
+          meta:
+            $ref: '../common/meta.yaml'
+      - $ref: './employee.yaml'
+  retailStore:
+    description: Метаданные точки продаж, к которой прикреплен кассир
+    type: object
+    oneOf:
+      - properties:
+          meta:
+            $ref: '../common/meta.yaml'
+      - $ref: './retail-store.yaml'

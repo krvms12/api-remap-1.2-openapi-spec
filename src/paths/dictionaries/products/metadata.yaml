@@ -1,0 +1,16 @@
+get:
+  tags:
+    - Products
+  summary: Получить метаданные товаров
+  description: Запрос на получение метаданных товаров
+  responses:
+    '200':
+      description: Успешный запрос
+      content:
+        application/json:
+          schema:
+            $ref: '../../../components/schemas/products/product-metadata.yaml'
+    '401':
+      $ref: '../../../components/responses.yaml#/Unauthorized'
+    '403':
+      $ref: '../../../components/responses.yaml#/Forbidden'

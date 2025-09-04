@@ -1,0 +1,57 @@
+openapi: 3.0.3
+info:
+  title: МойСклад JSON API
+  description: |
+    API для манипуляции с сущностями и создания отчетов в онлайн-сервисе МойСклад.
+    
+    ## Аутентификация
+    
+    МойСклад поддерживает аутентификацию по протоколу Basic Auth и с использованием токена доступа:
+    - Basic Auth: заголовок `Authorization` со значением пары `логин:пароль`, закодированным в Base64
+    - Bearer Token: заголовок `Authorization` со значением `Bearer <Access-Token>`
+    
+    ## Ограничения
+    
+    - Не более 45 запросов за 3 секундный период от аккаунта
+    - Не более 5 параллельных запросов от одного пользователя  
+    - Не более 20 параллельных запросов от аккаунта
+    - Не более 20 Мб данных в одном запросе
+    - Максимум 1000 элементов в массиве
+    - Обязательное использование сжатия gzip
+  version: "1.0.0"
+
+servers:
+  - url: https://api.moysklad.ru/api/remap/1.2
+    description: Production server
+
+security:
+  - basicAuth: []
+  - bearerAuth: []
+
+paths:
+  # Dictionaries
+  #
+  # Products
+  /entity/product:
+    $ref: './paths/dictionaries/products/products.yaml'
+  /entity/product/{id}:
+    $ref: './paths/dictionaries/products/product-by-id.yaml'
+  /entity/product/delete:
+    $ref: './paths/dictionaries/products/products-delete.yaml'
+  /entity/product/metadata:
+    $ref: './paths/dictionaries/products/metadata.yaml'
+
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Basic аутентификация с логином и паролем
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: Bearer токен аутентификация
+
+tags:
+  - name: Products
+    description: Операции с товарами
