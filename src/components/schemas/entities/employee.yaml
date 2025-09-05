@@ -86,7 +86,7 @@ properties:
       - properties:
           meta:
             $ref: '../common/meta.yaml'
-      - $ref: '../entities/group.yaml'
+      - $ref: './group.yaml'
   owner:
     description: Метаданные владельца (Сотрудника)
     type: object
@@ -94,7 +94,7 @@ properties:
       - properties:
           meta:
             $ref: '../common/meta.yaml'
-      - $ref: '../entities/employee.yaml'
+      - $ref: './employee.yaml'
   inn:
     type: string
     maxLength: 255
@@ -117,17 +117,16 @@ properties:
         format: float
         description: Сумма оклада
   cashiers:
-    type: object
+    type: array
     description: Массив кассиров
     readOnly: true
-    properties:
-      meta:
-        $ref: '../common/meta.yaml'
-      rows:
-        type: array
-        items:
-          type: object
-          $ref: './cashier.yaml'
+    items:
+      type: object
+      oneOf:
+        - properties:
+            meta:
+              $ref: '../common/meta.yaml'
+        - $ref: './cashier.yaml'
   image:
     type: object
     description: Фотография сотрудника

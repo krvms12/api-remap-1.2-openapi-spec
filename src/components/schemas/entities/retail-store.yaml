@@ -74,9 +74,7 @@ properties:
     description: Метаданные владельца (сотрудника)
   priceType:
     type: object
-    properties:
-      meta:
-        $ref: '../common/meta.yaml'
+    $ref: './price-type.yaml'
     description: Тип цены, используемый в Точке продаж
   environment:
     description: Информация о среде (оборудование, ПО и т.д.)
@@ -169,8 +167,8 @@ properties:
   lastOperationNames:
     type: array
     items:
-      type: string
-    description: Последние названия операций
+      $ref: '#/components/schemas/LastOperationNames'
+    description: Последние операции
   masterRetailStores:
     type: array
     items: 
@@ -194,11 +192,8 @@ properties:
     type: boolean
     description: Признак обязательной печати чеков
   productFolders:
-    type: array
-    items:
-      properties:
-        meta:
-          $ref: '../common/meta.yaml'
+    type: object
+    $ref: '../common/meta-list.yaml'
     description: Список групп товаров
   receiptTemplate:
     properties:
@@ -285,6 +280,12 @@ properties:
 
 components:
   schemas:
+    LastOperationNames:
+      type: object
+      description: Последние операции
+      properties:
+        entity: { type: string, maxLength: 255, description: Ключевое слово, обозначающее тип последней операции }
+        name: { type: string, maxLength: 255, description: Наименование (номер) последней операции }
     Environment:
       type: object
       description: Среда точки продаж
